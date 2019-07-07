@@ -1,6 +1,6 @@
 package ru.Eltex.kitosina;
 
 public interface CSV {
-    void setFIO(String FIO);
-    String getFIO();
+    void toCSV();
+    String fromCSV(String str);
 }

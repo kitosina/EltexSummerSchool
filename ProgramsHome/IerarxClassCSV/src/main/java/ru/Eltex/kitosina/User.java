@@ -1,6 +1,6 @@
 package ru.Eltex.kitosina;
 
-abstract class User{
+public abstract class User implements CSV{
     private Byte Id;
     private String FIO;
     private String Email;
@@ -11,28 +11,31 @@ abstract class User{
         setId(Id);
         setPhone(Phone);
     }
-    public void getFIO(){
-        System.out.println("FIO: "+this.FIO);
+    public String getFIO(){
+        return FIO;
     }
-    public void getEmail(){
-        System.out.println("Email: "+this.Email);
+    public String getEmail() {
+        return Email;
     }
-    public void getPhone(){
-        System.out.println("Phone: "+this.Phone);
+    public String getPhone(){
+        return Phone;
     }
-    public void getId(){
-        System.out.println("Id: "+this.Id);
+    public Byte getId(){
+        return Id;
     }
     private void setId(Byte Id){
+
         this.Id=Id;
     }
     private void setFIO(String FIO){
         this.FIO=FIO;
     }
     private void setEmail(String Email){
+
         this.Email=Email;
     }
     private void setPhone(String Phone){
+
         this.Phone=Phone;
     }
 }
