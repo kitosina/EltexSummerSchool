@@ -1,41 +1,40 @@
 package ru.Eltex.kitosina;
 
-public abstract class User implements CSV{
+abstract class User implements CSV {
     private Byte Id;
     private String FIO;
     private String Email;
     private String Phone;
-    User (String FIO,String Email, String Phone,Byte Id){
+    User(Byte Id,String FIO, String Email, String Phone) {
         setFIO(FIO);
         setEmail(Email);
         setId(Id);
         setPhone(Phone);
     }
-    public String getFIO(){
+    public String getFIO() {
         return FIO;
     }
     public String getEmail() {
+
         return Email;
     }
-    public String getPhone(){
+    public String getPhone() {
         return Phone;
     }
-    public Byte getId(){
+    public Byte getId() {
         return Id;
     }
-    private void setId(Byte Id){
-
-        this.Id=Id;
+    protected void setId(Byte Id) {
+        this.Id = Id;
     }
-    private void setFIO(String FIO){
-        this.FIO=FIO;
+    protected void setFIO(String FIO) {
+        this.FIO = FIO;
     }
-    private void setEmail(String Email){
-
-        this.Email=Email;
+    protected void setEmail(String Email) {
+        this.Email = Email;
     }
-    private void setPhone(String Phone){
-
-        this.Phone=Phone;
+    protected void setPhone(String Phone) {
+        this.Phone = Phone;
     }
 }
+

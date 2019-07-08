@@ -8,15 +8,19 @@ public class sales {
         setItems(items);
     }
     private void setItems(String[] items){
+
         this.items=items;
     }
     public String[] getItems(){
+
         return items;
     }
     private void setCost(Double cost){
+
         this.cost=cost;
     }
     public Double getCost(){
+
         return cost;
     }
 }
