@@ -1,0 +1,6 @@
+1;Zakhlevnyi;89069108346;Cu,Paskal,Java
+2
+Kogustova;mazika;89709546523;Cu
+
+3;Gromov;Grom;89482332423;Cu,Pascal
+555;Foma;asd;Cb,La

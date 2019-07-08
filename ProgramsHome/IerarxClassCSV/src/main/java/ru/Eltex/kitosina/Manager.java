@@ -26,7 +26,7 @@ public class Manager extends User implements CSV {
         LinkedList<String> Man=new LinkedList<>();
         String[] BitStr=str.split(";");
         super.setId(Byte.valueOf(BitStr[0]));//Занесли ID
-        super.setFIO(BitStr[1]);//Занесли ФИО
+        super.setFIO(BitStr[1]);//FIO
         super.setPhone(BitStr[2]);//Занесли Телефон
         super.setEmail(BitStr[3]);//Занесли Майл
         Man.add(BitStr[4]);//Скидки предметы
