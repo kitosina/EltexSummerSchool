@@ -1,6 +1,8 @@
 package ru.Eltex.kitosina;
 
+import java.io.BufferedReader;
+
 public interface CSV {
-    String toCSV();
-    void fromCSV(String str);
+    void toCSV();
+    void fromCSV();
 }

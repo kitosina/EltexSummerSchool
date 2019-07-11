@@ -1,26 +1,24 @@
 package ru.Eltex.kitosina;
 
+import java.util.ArrayList;
+
 public class sales {
-    private String[] items;
-    private Double cost;
-    sales(String[] items, Double cost){
+    private ArrayList<String> items=new ArrayList<>();
+    private ArrayList<Double> cost=new ArrayList<>();
+    sales(ArrayList items, ArrayList cost){
         setCost(cost);
         setItems(items);
     }
-    private void setItems(String[] items){
-
+    private void setItems(ArrayList items){
         this.items=items;
     }
-    public String[] getItems(){
-
+    public ArrayList getItems(){
         return items;
     }
-    private void setCost(Double cost){
-
+    private void setCost(ArrayList cost){
         this.cost=cost;
     }
-    public Double getCost(){
-
+    public ArrayList getCost(){
         return cost;
     }
 }

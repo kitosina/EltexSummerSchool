@@ -11,17 +11,17 @@ abstract class User implements CSV {
         setId(Id);
         setPhone(Phone);
     }
-    public String getFIO() {
+    protected String getFIO() {
         return FIO;
     }
-    public String getEmail() {
+    protected String getEmail() {
 
         return Email;
     }
-    public String getPhone() {
+    protected String getPhone() {
         return Phone;
     }
-    public Byte getId() {
+    protected Byte getId() {
         return Id;
     }
     protected void setId(Byte Id) {

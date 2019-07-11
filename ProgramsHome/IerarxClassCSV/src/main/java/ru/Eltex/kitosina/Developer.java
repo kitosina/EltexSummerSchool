@@ -1,5 +1,6 @@
 package ru.Eltex.kitosina;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class Developer extends User implements CSV {
@@ -9,26 +10,24 @@ public class Developer extends User implements CSV {
         setLang(lang);
     }
     private void setLang(String[] lang){
-
         this.lang=lang;
     }
     public String[] getLang(){
         return lang;
     }
     @Override
-    public String toCSV() {
-        return super.getId()/*.toString()*/+";"+super.getFIO()+";"+super.getPhone()+";"+super.getEmail()+";"+this.getLang();
+    public void toCSV() {
     }
     @Override
-    public void fromCSV(String str) {
-        //Языки занести в коллекцию,все остальное раскидать по массивам
-        ArrayList<String> Dev =new ArrayList<>();
-        String[] BitStr=str.split(";");
-        super.setId(Byte.valueOf(BitStr[0]));//Занесли ID
-        super.setFIO(BitStr[1]);//FIO
-        super.setPhone(BitStr[2]);//Занесли Телефон
-        super.setEmail(BitStr[3]);//Занесли Майл
-        Dev.add(BitStr[4]);//Список языков в ArrayList
-        this.setLang(new String[]{BitStr[4]});//сисок языков в setLang
+    public void fromCSV() {
+        BufferedReader rd = null;
+        try {
+            rd = new BufferedReader(new FileReader("nnn"));
+            rd.readLine();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
