@@ -1,1 +1,0 @@
-Zakhlevnyi Nikita Macksimovich
