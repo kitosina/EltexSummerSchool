@@ -11,6 +11,9 @@ abstract class User implements CSV {
         setId(Id);
         setPhone(Phone);
     }
+    User(){
+
+    }
     protected String getFIO() {
         return FIO;
     }

@@ -1,7 +1,6 @@
 package ru.Eltex.kitosina;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class Developer extends User implements CSV {
     String[] lang;
@@ -9,25 +8,69 @@ public class Developer extends User implements CSV {
         super(Id,FIO, Email, Phone);
         setLang(lang);
     }
+    Developer(){
+        super();
+    }
     private void setLang(String[] lang){
         this.lang=lang;
     }
-    public String[] getLang(){
-        return lang;
+    private String[] getLang(){
+        return this.lang;
     }
+    private String getLangStroka(){
+        StringBuilder Sb=new StringBuilder();
+        for(int i=0;i<lang.length;i++){
+            Sb.append(lang[i]).append(",");
+        }
+        return Sb.toString();
+    }
+    private String getStrokaUser(){
+        StringBuilder Sb=new StringBuilder();
+        Sb.append(getId()).append(",").append(getFIO()).append(",").append(getEmail()).append(",").append(getPhone()).append(":");
+        return Sb.toString();
+    }
+    public String toString(){
+     StringBuilder Sb=new StringBuilder();
+     Sb.append(getId()).append(getFIO()).append(getEmail()).append(getPhone()).append(getLangStroka());
+     return Sb.toString();
+    }
+    /*private StringBuilder getLangsStroka(){
+        StringBuilder Sb=new StringBuilder();
+        Sb.append(getLang());
+        return Sb;
+    }*/
     @Override
     public void toCSV() {
-    }
-    @Override
-    public void fromCSV() {
-        BufferedReader rd = null;
         try {
-            rd = new BufferedReader(new FileReader("nnn"));
-            rd.readLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            FileWriter Manager=new FileWriter("Developer.csv",false);
+            Manager.write(getStrokaUser()+getLangStroka());//+getLangsStroka());
+            Manager.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void fromCSV() {
+        String Data=":";
+        String csvData=",";
+        String Str;
+        String[] userFullData;
+        String[] userBitData;
+        String[] langFullData;
+        try {
+            BufferedReader BuffR=new BufferedReader(new FileReader("Developer.csv"));
+            Str=BuffR.readLine();
+            userFullData=Str.split(Data);//Po : User Data and Langs
+            userBitData=userFullData[0].split(csvData);
+            super.setId(Byte.valueOf(userBitData[0]));
+            super.setFIO(userBitData[1]);
+            super.setEmail(userBitData[2]);
+            super.setPhone(userBitData[3]);
+            langFullData=userFullData[1].split(csvData);
+            this.setLang(langFullData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
