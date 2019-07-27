@@ -34,16 +34,17 @@ protected void getDeveloperFile(){
         e.printStackTrace();
     }
 }
-    /*protected void getManagerFile(){
+    protected void getManagerFile(){
         Integer NumStr=1;
         try {
             String[] userStandartDat;
             String[] userData;
-            BufferedReader buffManager=new BufferedReader(new FileReader("manager.csv"));
+            BufferedReader buffManager=new BufferedReader(new FileReader("C:\\Users\\kitos\\IdeaProjects\\JDBC_CSV\\src\\main\\resources\\manager.csv"));
             while(NumStr!=(ID)){
+                NumStr++;
                 buffManager.readLine();
             }//Поиск нужной строки по ID
-            userData=(buffManager.readLine()).split(":");//Разбили данные нужной строки на Данные User и Lang
+            userData=(buffManager.readLine()).split(">");//Разбили данные нужной строки на Данные User и Lang
             userStandartDat=userData[0].split(",");//Разбили строку User на нужные элементы
             setFIO(userStandartDat[1]);
             setEmail(userStandartDat[2]);
@@ -54,7 +55,7 @@ protected void getDeveloperFile(){
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
     protected Integer getID() {
         return ID;
     }

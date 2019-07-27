@@ -11,7 +11,7 @@ public class Developer extends User {
     final String URL="jdbc:mysql://localhost:3306/jdbc_csv";
     final String user="root";
     final String password="12345";
-    private Integer DeveloperIdStr;
+    private Integer DeveloperIdStr=1;
     private ArrayList<String> Lang=new ArrayList<>();//Храним языки и ID
     Developer(Integer ID) {
         super(ID);
@@ -33,9 +33,8 @@ public class Developer extends User {
         String[] LangsStr;
         //String[] Lang;
         String[] userData;
-        BufferedReader buffDeveloper= null;
         try {
-            buffDeveloper = new BufferedReader(new FileReader("C:\\Users\\kitos\\IdeaProjects\\JDBC_CSV\\src\\main\\resources\\developer.csv"));
+            BufferedReader buffDeveloper = new BufferedReader(new FileReader("C:\\Users\\kitos\\IdeaProjects\\JDBC_CSV\\src\\main\\resources\\developer.csv"));
             while(NumStr!=(super.getID())){
                 NumStr++;
                 buffDeveloper.readLine();
@@ -53,20 +52,22 @@ public class Developer extends User {
     }
     @Override
     public void toDateBase() {
-        String tablesDeveloper="insert into developer (FIO,Email,Phone) values (?,?,?)";
+        String tablesDeveloper="insert into developer (FIO,Email,Phone,Lang_id) values (?,?,?,?)";
         String tablesLang="insert into lang (Lang,DeveloperID) values (?,?)";
         try {
             Connection connection=DriverManager.getConnection(URL,user,password);
-            PreparedStatement preparedStatementDeveloperTables=connection.prepareStatement(tablesDeveloper);
-            preparedStatementDeveloperTables.setString(1,super.getFIO());
-            preparedStatementDeveloperTables.setString(2,super.getEmail());
-            preparedStatementDeveloperTables.setString(3,super.getPhone());
-            preparedStatementDeveloperTables.executeUpdate();//Заполнили таблицу developer
             Statement statementDeveloper=connection.createStatement();
             ResultSet resultSetDeveloper=statementDeveloper.executeQuery("select DeveloperID from developer");
             while(resultSetDeveloper.next()){
                 DeveloperIdStr = resultSetDeveloper.getInt("DeveloperID");
+                DeveloperIdStr++;
             }
+            PreparedStatement preparedStatementDeveloperTables=connection.prepareStatement(tablesDeveloper);
+            preparedStatementDeveloperTables.setString(1,super.getFIO());
+            preparedStatementDeveloperTables.setString(2,super.getEmail());
+            preparedStatementDeveloperTables.setString(3,super.getPhone());
+            preparedStatementDeveloperTables.setInt(4,DeveloperIdStr);
+            preparedStatementDeveloperTables.executeUpdate();//Заполнили таблицу developer
             for(int i=0;i<Lang.size();i++){
                 PreparedStatement preparedStatementLangTables=connection.prepareStatement(tablesLang);
                 preparedStatementLangTables.setString(1,Lang.get(i));
