@@ -10,17 +10,12 @@ public class Manager implements CSV{
     Manager(Integer id){
         this.id=id;
     }
+    @Override
     public void fromCSV() {
-        try {
-            Connection connection = DriverManager.getConnection(URL,user,password);
-            Statement statement=connection.createStatement();
-            ResultSet resultSet=statement.executeQuery("select * from manager");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public String toCSV(String str) {
-        return null;
+    }
+    @Override
+    public void toDateBase() {
+
     }
 }
