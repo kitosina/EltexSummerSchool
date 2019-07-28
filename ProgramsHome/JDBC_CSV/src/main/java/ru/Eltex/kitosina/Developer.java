@@ -16,7 +16,7 @@ public class Developer extends User {
     Developer(Integer ID) {
         super(ID);
     }
-    public String toStringDeveloper(){
+    public String toString(){
         StringBuilder BuffUser=new StringBuilder();
         StringBuilder BuffLangsId=new StringBuilder();
         BuffUser.append(getID()).append(",").append(getFIO()).append(",").append(getEmail()).append(",").append(getPhone()).append("\n");
@@ -61,7 +61,7 @@ public class Developer extends User {
             while(resultSetDeveloper.next()){
                 DeveloperIdStr = resultSetDeveloper.getInt("DeveloperID");
                 DeveloperIdStr++;
-            }
+            }//Нумеруем Lang_id, отталкиваясь от последнего DeveloperID
             PreparedStatement preparedStatementDeveloperTables=connection.prepareStatement(tablesDeveloper);
             preparedStatementDeveloperTables.setString(1,super.getFIO());
             preparedStatementDeveloperTables.setString(2,super.getEmail());
