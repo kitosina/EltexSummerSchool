@@ -41,6 +41,7 @@ public class Developer extends User {
             for(String lang: LangsStr){
                 Lang.add(lang);
             }
+            buffDeveloper.close();
     }
     @Override
     public void toDateBase() throws SQLException {
@@ -59,11 +60,15 @@ public class Developer extends User {
             preparedStatementDeveloperTables.setString(3,super.getPhone());
             preparedStatementDeveloperTables.setInt(4,DeveloperIdStr);
             preparedStatementDeveloperTables.executeUpdate();//Заполнили таблицу developer
+            PreparedStatement preparedStatementLangTables = connection.prepareStatement(tablesLang);
             for(int i=0;i<Lang.size();i++) {
-                PreparedStatement preparedStatementLangTables = connection.prepareStatement(tablesLang);
                 preparedStatementLangTables.setString(1, Lang.get(i));
                 preparedStatementLangTables.setInt(2, DeveloperIdStr);
                 preparedStatementLangTables.executeUpdate();//Заполнили таблицу Lang
             }
+            preparedStatementLangTables.close();
+            preparedStatementDeveloperTables.close();
+            resultSetDeveloper.close();
+            connection.close();
     }
 }

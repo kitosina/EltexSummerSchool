@@ -30,5 +30,11 @@ public class Main {
         man1.toDateBase();
         man2.toDateBase();
         man3.toDateBase();
+        Developer devka=new Developer(4);
+        devka.fromCSV();
+        devka.toDateBase();
+        Manager Manka=new Manager(4);
+        Manka.fromCSV();
+        Manka.toDateBase();
     }
 }

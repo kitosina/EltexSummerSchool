@@ -45,6 +45,7 @@ public class Manager extends User {
                 Item.add(costItem[0]);
                 Cost.add(costItem[1]);
             }//Разбили строку Manager на Cost и Items-Заполняем ArrayLists
+        buffManager.close();
     }
     @Override
     public void toDateBase() throws SQLException {
@@ -63,12 +64,17 @@ public class Manager extends User {
         preparedStatementManagerTables.setString(3, super.getPhone());
         preparedStatementManagerTables.setInt(4, ManagerIdStr);
         preparedStatementManagerTables.executeUpdate();//Заполнили таблицу manager
+        PreparedStatement preparedStatementCostItemsTables = connection.prepareStatement(tablesCostItems);
         for (int i = 0; i < Cost.size(); i++) {
-            PreparedStatement preparedStatementCostItemsTables = connection.prepareStatement(tablesCostItems);
             preparedStatementCostItemsTables.setString(1, Cost.get(i));
             preparedStatementCostItemsTables.setString(2, Item.get(i));
             preparedStatementCostItemsTables.setInt(3, ManagerIdStr);
             preparedStatementCostItemsTables.executeUpdate();//Заполнили таблицу Costitems
         }
+        preparedStatementManagerTables.close();
+        preparedStatementCostItemsTables.close();
+        resultSetManager.close();
+        statementManager.close();
+        connection.close();
     }
 }
