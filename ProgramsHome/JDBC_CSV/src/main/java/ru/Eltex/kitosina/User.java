@@ -26,6 +26,7 @@ protected void getDeveloperFile() throws IOException {
         setFIO(userStandartDat[1]);
         setEmail(userStandartDat[2]);
         setPhone(userStandartDat[3]);
+        buffDeveloper.close();
 }
     protected void getManagerFile() throws IOException {
         Integer NumStr=1;
@@ -41,6 +42,7 @@ protected void getDeveloperFile() throws IOException {
             setFIO(userStandartDat[1]);
             setEmail(userStandartDat[2]);
             setPhone(userStandartDat[3]);
+            buffManager.close();
     }
     protected Integer getID() {
         return ID;
