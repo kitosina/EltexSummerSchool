@@ -1,7 +1,6 @@
 package ru.Eltex.kitosina;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -13,9 +12,8 @@ private String Phone;
 User(Integer ID){
     setID(ID);
 }
-protected void getDeveloperFile(){
+protected void getDeveloperFile() throws IOException {
     Integer NumStr=1;
-    try {
         String[] userStandartDat;
         String[] userData;
         BufferedReader buffDeveloper=new BufferedReader(new FileReader("C:\\Users\\kitos\\IdeaProjects\\JDBC_CSV\\src\\main\\resources\\developer.csv"));
@@ -28,15 +26,9 @@ protected void getDeveloperFile(){
         setFIO(userStandartDat[1]);
         setEmail(userStandartDat[2]);
         setPhone(userStandartDat[3]);
-    } catch (FileNotFoundException e) {
-        e.printStackTrace();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
 }
-    protected void getManagerFile(){
+    protected void getManagerFile() throws IOException {
         Integer NumStr=1;
-        try {
             String[] userStandartDat;
             String[] userData;
             BufferedReader buffManager=new BufferedReader(new FileReader("C:\\Users\\kitos\\IdeaProjects\\JDBC_CSV\\src\\main\\resources\\manager.csv"));
@@ -49,12 +41,6 @@ protected void getDeveloperFile(){
             setFIO(userStandartDat[1]);
             setEmail(userStandartDat[2]);
             setPhone(userStandartDat[3]);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
     protected Integer getID() {
         return ID;

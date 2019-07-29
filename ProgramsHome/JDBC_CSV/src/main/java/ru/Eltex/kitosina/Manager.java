@@ -1,7 +1,6 @@
 package ru.Eltex.kitosina;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
@@ -29,14 +28,13 @@ public class Manager extends User {
         return BuffUser.toString();
     }
     @Override
-    public void fromCSV() {
+    public void fromCSV() throws IOException {
         Integer NumStr = 1;
         String[] userData;
         String[] managerDat;
         getManagerFile();
-        try {
             BufferedReader buffManager = new BufferedReader(new FileReader("C:\\Users\\kitos\\IdeaProjects\\JDBC_CSV\\src\\main\\resources\\manager.csv"));
-            while (NumStr != (super.getID())) {
+            while (NumStr !=(super.getID())) {
                 NumStr++;
                 buffManager.readLine();
             }
@@ -47,39 +45,30 @@ public class Manager extends User {
                 Item.add(costItem[0]);
                 Cost.add(costItem[1]);
             }//Разбили строку Manager на Cost и Items-Заполняем ArrayLists
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
     @Override
-    public void toDateBase() {
+    public void toDateBase() throws SQLException {
         String tablesManager = "insert into manager (FIO,Email,Phone,CostItems_id) values (?,?,?,?)";
         String tablesCostItems = "insert into costitems (Cost,Items,IdManager) values (?,?,?)";
-        try {
-            Connection connection = DriverManager.getConnection(URL, user, password);
-            Statement statementManager = connection.createStatement();
-            ResultSet resultSetManager = statementManager.executeQuery("select id from manager");
-            while (resultSetManager.next()) {
-                ManagerIdStr = resultSetManager.getInt("id");
-                ManagerIdStr++;
-            }//Нумеруем CostItems_id, отталкиваясь от последнего ManagerID
-            PreparedStatement preparedStatementManagerTables = connection.prepareStatement(tablesManager);
-            preparedStatementManagerTables.setString(1, super.getFIO());
-            preparedStatementManagerTables.setString(2, super.getEmail());
-            preparedStatementManagerTables.setString(3, super.getPhone());
-            preparedStatementManagerTables.setInt(4, ManagerIdStr);
-            preparedStatementManagerTables.executeUpdate();//Заполнили таблицу manager
-            for (int i = 0; i < Cost.size(); i++) {
-                PreparedStatement preparedStatementCostItemsTables = connection.prepareStatement(tablesCostItems);
-                preparedStatementCostItemsTables.setString(1, Cost.get(i));
-                preparedStatementCostItemsTables.setString(2,Item.get(i));
-                preparedStatementCostItemsTables.setInt(3,ManagerIdStr);
-                preparedStatementCostItemsTables.executeUpdate();//Заполнили таблицу Costitems
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        Connection connection = DriverManager.getConnection(URL, user, password);
+        Statement statementManager = connection.createStatement();
+        ResultSet resultSetManager = statementManager.executeQuery("select id from manager");
+        while (resultSetManager.next()) {
+            ManagerIdStr = resultSetManager.getInt("id");
+            ManagerIdStr++;
+        }//Нумеруем CostItems_id, отталкиваясь от последнего ManagerID
+        PreparedStatement preparedStatementManagerTables = connection.prepareStatement(tablesManager);
+        preparedStatementManagerTables.setString(1, super.getFIO());
+        preparedStatementManagerTables.setString(2, super.getEmail());
+        preparedStatementManagerTables.setString(3, super.getPhone());
+        preparedStatementManagerTables.setInt(4, ManagerIdStr);
+        preparedStatementManagerTables.executeUpdate();//Заполнили таблицу manager
+        for (int i = 0; i < Cost.size(); i++) {
+            PreparedStatement preparedStatementCostItemsTables = connection.prepareStatement(tablesCostItems);
+            preparedStatementCostItemsTables.setString(1, Cost.get(i));
+            preparedStatementCostItemsTables.setString(2, Item.get(i));
+            preparedStatementCostItemsTables.setInt(3, ManagerIdStr);
+            preparedStatementCostItemsTables.executeUpdate();//Заполнили таблицу Costitems
         }
     }
 }

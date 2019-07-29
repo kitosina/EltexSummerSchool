@@ -1,7 +1,6 @@
 package ru.Eltex.kitosina;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
@@ -27,13 +26,11 @@ public class Developer extends User {
         return BuffUser.toString();
     }
     @Override
-    public void fromCSV() {
+    public void fromCSV() throws IOException {
         getDeveloperFile();
         Integer NumStr=1;
         String[] LangsStr;
-        //String[] Lang;
         String[] userData;
-        try {
             BufferedReader buffDeveloper = new BufferedReader(new FileReader("C:\\Users\\kitos\\IdeaProjects\\JDBC_CSV\\src\\main\\resources\\developer.csv"));
             while(NumStr!=(super.getID())){
                 NumStr++;
@@ -44,17 +41,11 @@ public class Developer extends User {
             for(String lang: LangsStr){
                 Lang.add(lang);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
     @Override
-    public void toDateBase() {
+    public void toDateBase() throws SQLException {
         String tablesDeveloper="insert into developer (FIO,Email,Phone,Lang_id) values (?,?,?,?)";
         String tablesLang="insert into lang (Lang,DeveloperID) values (?,?)";
-        try {
             Connection connection=DriverManager.getConnection(URL,user,password);
             Statement statementDeveloper=connection.createStatement();
             ResultSet resultSetDeveloper=statementDeveloper.executeQuery("select DeveloperID from developer");
@@ -68,14 +59,11 @@ public class Developer extends User {
             preparedStatementDeveloperTables.setString(3,super.getPhone());
             preparedStatementDeveloperTables.setInt(4,DeveloperIdStr);
             preparedStatementDeveloperTables.executeUpdate();//Заполнили таблицу developer
-            for(int i=0;i<Lang.size();i++){
-                PreparedStatement preparedStatementLangTables=connection.prepareStatement(tablesLang);
-                preparedStatementLangTables.setString(1,Lang.get(i));
-                preparedStatementLangTables.setInt(2,DeveloperIdStr);
+            for(int i=0;i<Lang.size();i++) {
+                PreparedStatement preparedStatementLangTables = connection.prepareStatement(tablesLang);
+                preparedStatementLangTables.setString(1, Lang.get(i));
+                preparedStatementLangTables.setInt(2, DeveloperIdStr);
                 preparedStatementLangTables.executeUpdate();//Заполнили таблицу Lang
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }
