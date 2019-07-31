@@ -1,0 +1,12 @@
+<Users>
+    <ClassUser User="Developer_1">
+        <Name Name="Ivan"></Name>
+        <Age Age="25"></Age>
+        <Lang Lang="C++"></Lang>
+    </ClassUser>
+    <ClassUser User="Developer_2">
+        <Name Name="Marina">Marina</Name>
+        <Age Age="30"></Age>
+        <Lang Lang="C#"></Lang>
+    </ClassUser>
+</Users>
