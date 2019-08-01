@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding="utf-8"?>
+        <!DOCTYPE hibernate-configuration PUBLIC
+                "-//Hibernate/Hibernate Configuration DTD//EN"
+                "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibirnatdb</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">12345</property>
+        <mapping class="ru.Eltex.kitosina.HibernateMain"/>
+        <mapping class="ru.Eltex.kitosina.TableCostItems"/>
+        <mapping class="ru.Eltex.kitosina.TableLang"/>
+        <mapping class="ru.Eltex.kitosina.TableManager"/>
+        <mapping class="ru.Eltex.kitosina.TablesDeveloper"/>
+        <mapping class="ru.Eltex.kitosina.HibernateUtil"/>
+    </session-factory>
+</hibernate-configuration>
