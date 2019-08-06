@@ -4,17 +4,20 @@
                 "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.hbm2ddl.auto">create</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">update</property> <!-- update/validate/create-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibirnatdb</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate?useSSL=false</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">12345</property>
-        <mapping class="ru.Eltex.kitosina.HibernateMain"/>
-        <mapping class="ru.Eltex.kitosina.TableCostItems"/>
-        <mapping class="ru.Eltex.kitosina.TableLang"/>
-        <mapping class="ru.Eltex.kitosina.TableManager"/>
-        <mapping class="ru.Eltex.kitosina.TablesDeveloper"/>
-        <mapping class="ru.Eltex.kitosina.HibernateUtil"/>
+        <property name="hibernate.connection.pool_size">1</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.connection.autocommit">true</property>
+
+        <mapping class="ru.Eltex.kitosina.ClassUser.Manager"/>
+        <mapping class="ru.Eltex.kitosina.ClassUser.Developer"/>
+        <mapping class="ru.Eltex.kitosina.ClassUser.Lang"/>
+        <mapping class="ru.Eltex.kitosina.ClassUser.Sales"/>
     </session-factory>
 </hibernate-configuration>
