@@ -1,13 +1,17 @@
 package ru.Eltex.kitosina.ClassUser;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="Developer")
 public class Developer {
 
@@ -26,5 +30,12 @@ public class Developer {
 
     @Column(name="Phone")
     @Getter @Setter private String Phone;
+
+    public Developer(String FIO, String Email, String Phone, List<Lang> lang){
+        this.FIO=FIO;
+        this.Email=Email;
+        this.Phone=Phone;
+        this.lang=lang;
+    }
 
 }
