@@ -1,0 +1,12 @@
+{
+  "name":"Manager-1","phone":195,"id":10,
+  "Items":[{"ItemsName":"monitor0","Price":5543},{"ItemsName":"keyboard0","Price":843}],
+}
+{
+  "name":"Manager-2","phone":857,"id":11,
+  "Items":[{"ItemsName":"monitor1","Price":5544},{"ItemsName":"keyboard1","Price":844}],
+}
+{
+  "name":"Manager-3","phone":275,"id":12,
+  "Items":[{"ItemsName":"monitor2","Price":5545},{"ItemsName":"keyboard2","Price":845}],
+}
