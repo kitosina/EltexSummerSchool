@@ -1,46 +1,54 @@
 package ru.Eltex.kitosina;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Developer extends User{
-    private ArrayList<String> langs=new ArrayList<>();
-    private ObjectMapper objectMapper=new ObjectMapper();
+    private List<String> langs;
 
     public Developer(){
         super();
     }
 
-    public Developer(String name, String phone, Integer id, ArrayList<String> langs) {
+    public Developer(String name, String phone, Integer id) {
         super(name, phone, id);
-        this.langs = langs;
     }
 
-    private ArrayList<String> getLangs() {
+    private List<String> getLangs() {
         return langs;
     }
 
-    private void setLangs(ArrayList<String> langs) {
+    public void setLangs(List<String> langs) {
         this.langs = langs;
     }
 
+//    public void langs(String... args){
+//        for(String str : args){
+//            langs.add(str);
+//        }
+//    }
+
+
     public String toString(){
-        return getName()+" "+getId()+" "+getPhone()+":"+getLangs();
-    }
-    @Override
-    public String toJSON() {
-        return  null;
+        return getName()+" "+getPhone()+" "+getId()+":"+getLangs();
     }
 
     @Override
-    public void fromJSON() throws IOException {
+    public String toJSON() throws IOException {
+        ObjectMapper objectMapper=new ObjectMapper();
+        String inJsonStr;
+        inJsonStr=objectMapper.writeValueAsString(this);
+        return inJsonStr;
+    }
+
+    @Override
+    public void fromJSON(Integer strIterator) throws IOException {
         String jsonStr;
+        ObjectMapper objectMapper=new ObjectMapper();
         BufferedReader br=new BufferedReader(new FileReader("C:\\Users\\kitos\\IdeaProjects\\JSONierarxia\\src\\main\\resources\\developer.json"));
         while((jsonStr=br.readLine())!=null){
             Developer dev = objectMapper.readValue(jsonStr, Developer.class);
@@ -48,6 +56,8 @@ public class Developer extends User{
             super.setName(dev.name);
             super.setPhone(dev.phone);
             this.setLangs(dev.langs);
+            strIterator--;
+            if(strIterator==0) break;
         }
     }
 }

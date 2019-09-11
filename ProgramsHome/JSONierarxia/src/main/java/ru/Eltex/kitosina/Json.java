@@ -3,6 +3,6 @@ package ru.Eltex.kitosina;
 import java.io.IOException;
 
 public interface Json {
-    String toJSON();
-    void fromJSON() throws IOException;
+    String toJSON() throws IOException;
+    void fromJSON(Integer strIterator) throws IOException;
 }

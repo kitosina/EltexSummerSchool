@@ -15,7 +15,7 @@ public class Manager extends User {
     }
 
     @Override
-    public void fromJSON() {
+    public void fromJSON(Integer strIterator) {
 
     }
 
