@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName="ru.Eltex.kitosina.HibernateMain"
+group 'ru.Eltex.kitosina'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'mysql:mysql-connector-java:8.0.17'
+    implementation 'org.hibernate:hibernate-core:5.4.3.Final'
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+}
