@@ -1,3 +1,2 @@
-{"name":"Manager-1","phone":195,"id":1,"product":[{"productName":"monitor0","productPrice":5543},{"productName":"keyboard0","productPrice":843}]}
-{"name":"Manager-2","phone":857,"id":2,"product":[{"productName":"monitor1","productPrice":5544},{"productName":"keyboard1","productPrice":844}]}
-{"name":"Manager-3","phone":275,"id":3,"product":[{"productName":"monitor2","productPrice":5545},{"productName":"keyboard2","productPrice":845}]}
+{"name":"M-1","phone":"89069107561","id":1,"product":["Computer","Block"],"price":[25000,7500]}
+{"name":"M-2","phone":"89109734525","id":2,"product":["Mouse","Monitor","Router"],"price":[738,9000,4697]}

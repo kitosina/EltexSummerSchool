@@ -5,51 +5,50 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Developer extends User{
-    private List<String> langs;
+    private ArrayList<String> langs;
 
-    public Developer(){
+    public Developer()  {
         super();
     }
 
-    public Developer(String name, String phone, Integer id) {
+    public Developer(String name, String phone, Integer id)  {
         super(name, phone, id);
+        this.langs=new ArrayList<>();
     }
 
-    private List<String> getLangs() {
+    public ArrayList<String> getLangs() {
         return langs;
     }
 
-    public void setLangs(List<String> langs) {
+    public void setLangs(ArrayList<String> langs) {
         this.langs = langs;
     }
 
-//    public void langs(String... args){
-//        for(String str : args){
-//            langs.add(str);
-//        }
-//    }
+    public void langs(String ... args){
+        for(String str : args){
+            langs.add(str);
+        }
+    }
 
 
     public String toString(){
-        return getName()+" "+getPhone()+" "+getId()+":"+getLangs();
+        return super.getName()+" "+super.getPhone()+" "+super.getId()+":"+this.getLangs();
     }
 
     @Override
     public String toJSON() throws IOException {
         ObjectMapper objectMapper=new ObjectMapper();
-        String inJsonStr;
-        inJsonStr=objectMapper.writeValueAsString(this);
-        return inJsonStr;
+        String inJsonString=objectMapper.writeValueAsString(this);
+        return inJsonString;
     }
 
     @Override
     public void fromJSON(Integer strIterator) throws IOException {
         String jsonStr;
         ObjectMapper objectMapper=new ObjectMapper();
-        BufferedReader br=new BufferedReader(new FileReader("C:\\Users\\kitos\\IdeaProjects\\JSONierarxia\\src\\main\\resources\\developer.json"));
+        BufferedReader br=new BufferedReader(new FileReader("src\\main\\resources\\developer.json"));
         while((jsonStr=br.readLine())!=null){
             Developer dev = objectMapper.readValue(jsonStr, Developer.class);
             super.setId(dev.id);
