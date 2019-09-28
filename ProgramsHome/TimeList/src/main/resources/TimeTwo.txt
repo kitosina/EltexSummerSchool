@@ -1,0 +1,2 @@
+Time HashSet: 72
+Time HashMap: 330

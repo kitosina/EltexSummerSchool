@@ -1,0 +1,3 @@
+Time ArrayList: 163
+Time ArrayList: 386
+Time ArrayList: 76
