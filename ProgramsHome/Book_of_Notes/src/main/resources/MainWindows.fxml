@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="603.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.Eltex.kitosina.Controller.Controller">
+    <children>
+        <Button fx:id="buttonAddNotes" layoutX="14.0" layoutY="528.0" mnemonicParsing="false" onMouseClicked="#addNotes" prefHeight="61.0" prefWidth="193.0" style="-fx-background-color: #228B22;" text="Добавить Заметку" />
+        <Pane layoutX="439.0" layoutY="14.0" prefHeight="511.0" prefWidth="500.0">
+         <children>
+            <TextArea fx:id="textNotes" layoutX="-1.0" prefHeight="465.0" prefWidth="507.0" style="-fx-background-color: #F0E68C;">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </TextArea>
+            <Label fx:id="labelExceptionSave" layoutX="14.0" layoutY="465.0" prefHeight="44.0" prefWidth="466.0" text="EventNotepad" textFill="#dd390f">
+               <font>
+                  <Font name="Calibri Italic" size="19.0" />
+               </font>
+               <padding>
+                  <Insets left="180.0" />
+               </padding>
+            </Label>
+         </children>
+        </Pane>
+        <Button fx:id="buttonRemoveNotes" layoutX="228.0" layoutY="528.0" mnemonicParsing="false" onMouseClicked="#removeNotes" prefHeight="61.0" prefWidth="193.0" style="-fx-background-color: #FA8072;" text="Удалить Заметку" />
+        <ListView fx:id="listEvent" layoutX="14.0" layoutY="16.0" onMouseClicked="#notesSheet" prefHeight="503.0" prefWidth="407.0" style="-fx-background-color: #E0FFFF;" />
+      <Button fx:id="saveButton" layoutX="442.0" layoutY="531.0" mnemonicParsing="false" onMouseClicked="#saveButtonEvent" prefHeight="61.0" prefWidth="500.0" text="Сохранить" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,2 @@
+nameEvent:Nikita;Event:Hello, Nikita!
+nameEvent:Vlada;Event:Hello, Vlada!
